@@ -76,8 +76,8 @@ typedef struct {
 CHARACTER monsters[MONSTER_MAX] = {
 	//[5-1-1]MONSTER_PLAYER		プレイヤー
 	{
-		100,						//[5-1-2]int hp						HP
-		100,						//[5-1-3]int maxHp					最大HP
+		100,					//[5-1-2]int hp						HP
+		100,					//[5-1-3]int maxHp					最大HP
 		15,						//[5-1-4]int mp						MP
 		15,						//[5-1-5]int maxMp					最大MP
 		30,						//[5-1-6]int attack					攻撃力
@@ -182,7 +182,7 @@ char map[MAP_MAX][MAP_HEIGHT][MAP_WIDTH + 1] =
 }
 };
 
-int currentMap;	//[5-5]現在のマップを宣言する
+int currentMap;		//[5-5]現在のマップを宣言する
 
 int playerX = 6;	//[5-6]プレイヤーのＸ座標
 
@@ -341,14 +341,9 @@ void Battle(int _monster) {
 				int damege = 0;
 
 				//[6-4-15]敵に与えるダメージをキャラクター毎に分岐して計算する
-					//characters[i].name == "ゆうしゃ"できないの何故？
-					// →characters[i].nameが中身（ゆうしゃ）を示しているわけではなく、その配列の先頭アドレスを示している。つまりアドレスと文字列を比べている
-					//前回のif文内	「i == 0」
 				if (strcmp(characters[i].name, "ゆうしゃ") == 0) {
 
 					//[6-4-15-1]もしプレイヤーなら
-						//プラス１しているのは元々０～２９までの計３０個をプラス１することで１～３０の計３０個となりダメージが丁度よくなる
-						//前回の計算式　「damege += (characters[i].attack / 3) + abs( (rand() % characters[i].attack) - (characters[i].attack / 3) );」
 					damege += (characters[i].attack / 3) + (rand() % (1 + (characters[i].attack) - (characters[i].attack / 3)));
 				}
 				else {
@@ -746,7 +741,8 @@ int main() {
 			_getch();
 		}
 	}
-/*
+/*元々あったコード
+
 	//[6-6-3]戦闘シーンの関数を呼び出す
 	Battle(MONSTER_SLIME);
 
